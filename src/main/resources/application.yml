@@ -1,0 +1,19 @@
+spring:
+  liquibase:
+    change-log: classpath:db/config/db.changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://postgres:5432/test?currentSchema=test_schema
+    username: postgres
+    password: postgres
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+  mail:
+    host: mail
+    port: 5025

@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: 'postgres'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - './init.sql:/docker-entrypoint-initdb.d/init.sql'
+
+  mail:
+    image: 'gessnerfl/fake-smtp-server'
+    ports:
+      - '15080:5080'
+      - '15025:5025'
+  web:
+    build:
+      context: ./
+    ports:
+      - '8080:8080'
